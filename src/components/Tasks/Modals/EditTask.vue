@@ -1,7 +1,7 @@
 <template>
 	<q-card>
 		<ModalHeader>
-			Add Task
+			Edit Task
 		</ModalHeader>
 
 		<q-form @submit.prevent="onSubmitForm" >
@@ -28,22 +28,18 @@
 	import { mapActions } from 'vuex';
 
 	export default {
-		name: "AddTask",
+		name: "EditTask",
+		props: ['task', 'id'],
 
 		data() {
 			return {
-				form: {
-					title: '',
-					dueDate: '',
-					dueTime: '',
-					completed: false
-				}
+				form: {}
 			}
 		},
 
 		methods: {
 			...mapActions('tasks', [
-				'addTask'
+				'updateTask'
 			]),
 
 			onSubmitForm () {
@@ -54,13 +50,20 @@
 			},
 
 			submitTask () {
-				this.addTask(this.form);
+				this.updateTask({
+					id: this.id,
+					updates: this.form
+				})
 				this.$emit('close-modal')
 			},
 
 			clearDueDateAndDueTime () {
 				this.form.dueDate = this.form.dueTime = '';
 			}
+		},
+
+		mounted() {
+			this.form = Object.assign({}, this.task);
 		},
 
 		components: {

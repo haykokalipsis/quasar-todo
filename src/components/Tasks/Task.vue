@@ -12,7 +12,7 @@
 
 		<!-- Text -->
 		<q-item-section>
-			<q-item-label :class="{'text-strikethrough': task.completed}">{{ task.name }}</q-item-label>
+			<q-item-label :class="{'text-strikethrough': task.completed}">{{ task.title }}</q-item-label>
 		</q-item-section>
 		<!-- Text END -->
 
@@ -33,16 +33,33 @@
 
 		<!-- Delete button -->
 		<q-item-section side>
-			<q-btn
-				flat
-				round
-				dense
-				clickable
-				@click.stop="onDelete(id)"
-				color="red"
-				icon="delete" />
+			<div class="row">
+				<q-btn
+					flat
+					round
+					dense
+					clickable
+					@click.stop="showEditTaskModal = true"
+					color="primary"
+					icon="edit" />
+
+				<q-btn
+					flat
+					round
+					dense
+					clickable
+					@click.stop="onDelete(id)"
+					color="red"
+					icon="delete" />
+			</div>
 		</q-item-section>
 		<!-- Delete button -->
+
+		<!-- Edit Task Modal Dialog -->
+		<q-dialog v-model="showEditTaskModal">
+			<EditTask :id="id" :task="task" @close-modal="showEditTaskModal = false" />
+		</q-dialog>
+		<!-- Edit Task Modal Dialog END -->
 	</q-item>
 </template>
 
@@ -51,15 +68,11 @@
 
 	export default {
 		name: "Task",
-		props: {
-			task: {
-				required: true,
-				type: Object
-			},
+		props: ['task', 'id'],
 
-			id: {
-				required: true,
-				type: String
+		data() {
+			return {
+				showEditTaskModal: false
 			}
 		},
 
@@ -86,6 +99,10 @@
 					});
 			}
 		},
+
+		components: {
+			EditTask: require('components/Tasks/Modals/EditTask').default
+		}
 	}
 </script>
 
