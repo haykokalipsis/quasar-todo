@@ -21,6 +21,8 @@ export default function () {
 				dueDate: '2020/09/25',
 				dueTime: '22:30'
 			},
-		}
+		},
+
+		search: ''
 	}
 }

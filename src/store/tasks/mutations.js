@@ -12,3 +12,7 @@ export function DELETE_TASK(state, id) {
 export function ADD_TASK(state, payload) {
 	Vue.set(state.tasks, payload.id, payload.task); // Reactive add.
 }
+
+export function SET_SEARCH(state, value) {
+	state.search = value;
+}

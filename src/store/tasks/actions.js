@@ -17,3 +17,7 @@ export function addTask(context, task) {
 	}
 	context.commit('ADD_TASK', payload);
 }
+
+export function setSearch(context, value) {
+	context.commit('SET_SEARCH', value);
+}
