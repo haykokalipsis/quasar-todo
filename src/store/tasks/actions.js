@@ -21,3 +21,7 @@ export function addTask(context, task) {
 export function setSearch(context, value) {
 	context.commit('SET_SEARCH', value);
 }
+
+export function setSort(context, value) {
+	context.commit('SET_SORT', value);
+}

@@ -23,6 +23,7 @@ export default function () {
 			},
 		},
 
-		search: ''
+		search: '',
+		sort: 'dueDate'
 	}
 }

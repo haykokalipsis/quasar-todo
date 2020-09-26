@@ -16,3 +16,7 @@ export function ADD_TASK(state, payload) {
 export function SET_SEARCH(state, value) {
 	state.search = value;
 }
+
+export function SET_SORT(state, value) {
+	state.sort = value;
+}

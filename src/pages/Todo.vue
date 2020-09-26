@@ -3,6 +3,7 @@
 		<!-- Search -->
 		<div class="row q-mb-lg">
 			<Search />
+			<Sort />
 		</div>
 
 		<p v-if="search && !Object.keys(tasksTodo).length && !Object.keys(tasksCompleted).length">
@@ -81,6 +82,7 @@
 			TaskList: require('components/Tasks/TaskList').default,
 			NoTasks: require('components/Tasks/NoTasks').default,
 			Search: require('components/Tasks/Search').default,
+			Sort: require('components/Tasks/Sort').default,
 			AddTask: require('components/Tasks/Modals/AddTask').default
 		}
 	}
