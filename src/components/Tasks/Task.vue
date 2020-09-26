@@ -2,6 +2,7 @@
 	<q-item
 		v-ripple
 		clickable
+		v-touch-hold:1000.mouse="showEditTask"
 		@click="updateTask({id: id, updates: {completed: !task.completed}})"
 		:class="task.completed && 'bg-green-1'">
 		<!-- Checkbox -->
@@ -81,6 +82,10 @@
 				'updateTask',
 				'deleteTask'
 			]),
+
+			showEditTask() {
+				this.showEditTaskModal = true;
+			},
 
 			onDelete(id) {
 				this.$q.dialog({

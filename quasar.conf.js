@@ -90,7 +90,7 @@ module.exports = function (/* ctx */) {
       // you can manually specify Quasar components/directives to be available everywhere:
       //
       // components: [],
-      // directives: [],
+      directives: ['Ripple', 'ClosePopup', 'TouchHold'],
 
       // Quasar plugins
       plugins: ['Dialog']
