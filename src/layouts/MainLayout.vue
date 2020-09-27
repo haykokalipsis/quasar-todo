@@ -16,10 +16,19 @@
 				</q-toolbar-title>
 
 				<q-btn
+					v-if="!loggedIn"
 					flat
 					to="/auth"
 					icon-right="account_circle"
 					label="Login"
+					class="absolute-right" />
+
+				<q-btn
+					v-else
+					flat
+					@click="logout"
+					icon-right="account_circle"
+					label="Logout"
 					class="absolute-right" />
 			</q-toolbar>
 		</q-header>
@@ -55,6 +64,7 @@
 
 <script>
 	import NavItem from 'components/NavItem.vue'
+	import { mapState, mapActions } from 'vuex';
 
 	const navsData = [
 		{
@@ -104,11 +114,20 @@
 	export default {
 		name: 'MainLayout',
 		components: {NavItem},
+
+		computed: {
+			...mapState('auth', ['loggedIn'])
+		},
+
 		data() {
 			return {
 				leftDrawerOpen: false,
 				navs: navsData
 			}
+		},
+
+		methods: {
+			...mapActions('auth', ['logout'])
 		}
 	}
 </script>

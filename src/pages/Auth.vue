@@ -17,7 +17,7 @@
 
 			<q-tab-panels v-model="tab" animated>
 				<q-tab-panel name="login">
-					<div class="text-h6">Login</div>
+					<Login />
 				</q-tab-panel>
 
 				<q-tab-panel name="register">
@@ -39,7 +39,8 @@
 		},
 
 		components: {
-			'Register': require('components/Auth/Register').default
+			'Register': require('components/Auth/Register').default,
+			'Login': require('components/Auth/Login').default,
 		}
 	}
 </script>

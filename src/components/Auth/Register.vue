@@ -35,7 +35,7 @@
 		</div>
 
 		<!-- TODO Password confirmation here -->
-		
+
 		<div class="row q-mb-md">
 			<q-space />
 			<q-btn type="submit" color="primary" label="Register" />
@@ -44,6 +44,8 @@
 </template>
 
 <script>
+	import {mapActions} from "vuex";
+
 	export default {
 		name: "Register",
 
@@ -57,12 +59,14 @@
 		},
 
 		methods: {
+			...mapActions('auth', ['register']),
+
 			submitForm() {
 				this.$refs.email.validate();
 				this.$refs.password.validate();
 
 				if ( !this.$refs.email.hasError && !this.$refs.password.hasError) {
-					console.log('register user');
+					this.register(this.form);
 				}
 			},
 

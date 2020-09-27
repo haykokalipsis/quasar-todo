@@ -42,6 +42,8 @@
 </template>
 
 <script>
+	import {mapActions} from "vuex";
+
 	export default {
 		name: "Register",
 
@@ -55,12 +57,14 @@
 		},
 
 		methods: {
+			...mapActions('auth', ['login']),
+
 			submitForm() {
 				this.$refs.email.validate();
 				this.$refs.password.validate();
 
 				if ( !this.$refs.email.hasError && !this.$refs.password.hasError) {
-					console.log('register user');
+					this.login(this.form);
 				}
 			},
 
