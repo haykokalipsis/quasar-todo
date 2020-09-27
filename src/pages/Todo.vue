@@ -1,46 +1,50 @@
  <template>
-	<q-page class="q-pa-md"> <!-- pa is for paading all directions -->
-		<!-- Search -->
-		<div class="row q-mb-lg">
-			<Search />
-			<Sort />
+	<q-page> <!-- pa is for paading all directions -->
+		<div class="q-pa-md absolute full-width full-height column">
+			<!-- Search and Sort-->
+			<div class="row q-mb-lg">
+				<Search />
+				<Sort />
+			</div>
+
+			<p v-if="search && !Object.keys(tasksTodo).length && !Object.keys(tasksCompleted).length">
+				No search results.
+			</p>
+			<!-- Search and Sort END -->
+
+			<!-- Lists of tasks -->
+			<q-scroll-area class="q-scroll-area-tasks">
+				<NoTasks v-if="!Object.keys(tasksTodo).length && !search" class="q-mb-lg"/>
+
+				<TaskList
+					v-if="Object.keys(tasksTodo).length"
+					:tasks="tasksTodo"
+					bgColor="bg-orange-4">
+						Todo
+				</TaskList>
+
+				<TaskList
+					v-if="Object.keys(tasksCompleted).length"
+					:tasks="tasksCompleted"
+					class="q-mb-xl"
+					bgColor="bg-green-4">
+						Completed
+				</TaskList>
+			</q-scroll-area>
+			<!-- Lists of tasks END -->
+
+			<!-- Add Task Button -->
+			<div class="absolute-bottom text-center q-mb-lg no-pointer-events">
+				<q-btn
+					@click="showAddTaskModal = true"
+					round
+					class="all-pointer-events"
+					size="24px"
+					color="primary"
+					icon="add" />
+			</div>
+			<!-- Add Task Button END -->
 		</div>
-
-		<p v-if="search && !Object.keys(tasksTodo).length && !Object.keys(tasksCompleted).length">
-			No search results.
-		</p>
-		<!-- Search END -->
-
-		<!-- Lists of tasks -->
-		<div class="relative-position">
-			<NoTasks v-if="!Object.keys(tasksTodo).length && !search" class="q-mb-lg"/>
-
-			<TaskList
-				v-if="Object.keys(tasksTodo).length"
-				:tasks="tasksTodo"
-				bgColor="bg-orange-4">
-					Todo
-			</TaskList>
-
-			<TaskList
-				v-if="Object.keys(tasksCompleted).length"
-				:tasks="tasksCompleted"
-				bgColor="bg-green-4">
-					Completed
-			</TaskList>
-		</div>
-		<!-- Lists of tasks END -->
-
-		<!-- Add Task Button -->
-		<div class="absolute-bottom text-center q-mb-lg">
-			<q-btn
-				@click="showAddTaskModal = true"
-				round
-				size="24px"
-				color="primary"
-				icon="add" />
-		</div>
-		<!-- Add Task Button END -->
 
 		<!-- Add Task Modal Dialog -->
 		<q-dialog v-model="showAddTaskModal">
@@ -91,5 +95,8 @@
 </script>
 
 <style>
-
+.q-scroll-area-tasks {
+	display: flex;
+	flex-grow: 1;
+}
 </style>

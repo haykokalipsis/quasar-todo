@@ -4,23 +4,23 @@
 		enter-active-class="animated zoomIn"
 		leave-active-class="animated zoomOut absolute-top">
 		<div class="q-mb-lg">
-		<q-banner
-			dense
-			inline-actions
-			:class="['list-header', 'text-white', 'text-center', bgColor]">
-				<span class="text-bold text-subtitle1">
-					<slot></slot>
-				</span>
-		</q-banner>
+			<q-banner
+				dense
+				inline-actions
+				:class="['list-header', 'text-white', 'text-center', bgColor]">
+					<span class="text-bold text-subtitle1">
+						<slot></slot>
+					</span>
+			</q-banner>
 
-		<q-list bordered separator>
-			<Task
-				v-for="(task, key) in tasks" :key="key"
-				:task="task"
-				:id="key">
-			</Task>
-		</q-list>
-	</div>
+			<q-list bordered separator>
+				<Task
+					v-for="(task, key) in tasks" :key="key"
+					:task="task"
+					:id="key">
+				</Task>
+			</q-list>
+		</div>
 	</transition>
 </template>
 
