@@ -26,8 +26,10 @@
 
 <script>
 	import { mapActions } from 'vuex';
+	// import mixinAddEditTask from 'src/mixins/';
 
 	export default {
+		// mixins: [mixinAddEditTask],
 		name: "EditTask",
 		props: ['task', 'id'],
 
