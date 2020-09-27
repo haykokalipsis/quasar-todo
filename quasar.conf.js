@@ -93,7 +93,7 @@ module.exports = function (/* ctx */) {
       directives: ['Ripple', 'ClosePopup', 'TouchHold'],
 
       // Quasar plugins
-      plugins: ['Dialog']
+      plugins: ['Dialog', 'LocalStorage']
     },
 
     // animations: 'all', // --- includes all animations
