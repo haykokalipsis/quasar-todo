@@ -21,7 +21,7 @@
 		</q-item-section>
 		<!-- Text END -->
 
-		<!-- Calendar -->
+		<!-- Calendar and Clock -->
 		<q-item-section side v-if="task.dueDate">
 			<div class="row">
 				<div class="column justify-center">
@@ -30,11 +30,11 @@
 
 				<div class="column">
 					<q-item-label caption class="row justify-end">{{ task.dueDate | niceDate }}</q-item-label>
-					<q-item-label caption class="row justify-end"><small>{{ task.dueTime }}</small></q-item-label>
+					<q-item-label caption class="row justify-end"><small>{{ taskDueTime }}</small></q-item-label>
 				</div>
 			</div>
 		</q-item-section>
-		<!-- Calendar END -->
+		<!-- Calendar and Clock END -->
 
 		<!-- Delete button -->
 		<q-item-section side>
@@ -69,7 +69,7 @@
 </template>
 
 <script>
-	import { mapState, mapActions } from 'vuex';
+	import { mapState, mapGetters, mapActions } from 'vuex';
 	import { date } from 'quasar';
 	const { formatDate } = date;
 
@@ -84,7 +84,16 @@
 		},
 
 		computed: {
-			...mapState('tasks', ['search'])
+			...mapState('tasks', ['search']),
+
+			...mapGetters('settings', ['settings']),
+
+			taskDueTime () {
+				if (this.settings.show12HourTimeFormat) {
+					return date.formatDate(this.task.dueDate + ' ' +this.task.dueTime, 'h:mmA');
+				}
+				return this.task.dueTime;
+			}
 		},
 
 		methods: {
