@@ -3,10 +3,12 @@
 		appear
 		enter-active-class="animated zoomIn"
 		leave-active-class="animated zoomOut absolute-top">
-		<div class="q-mb-lg">
+
+		<div :class="{'q-mb-lg': !settings.showTasksInOneList}">
 			<q-banner
 				dense
 				inline-actions
+				v-if="!settings.showTasksInOneList"
 				:class="['list-header', 'text-white', 'text-center', bgColor]">
 					<span class="text-bold text-subtitle1">
 						<slot></slot>
@@ -25,9 +27,17 @@
 </template>
 
 <script>
+	import {mapGetters} from "vuex";
+
 	export default {
 		name: "TasksTodo",
 		props: ['tasks', 'bgColor'],
+
+		computed: {
+			...mapGetters('settings', [
+				'settings'
+			])
+		},
 
 		components: {
 			Task: require('components/Tasks/Task').default,
