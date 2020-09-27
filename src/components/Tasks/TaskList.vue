@@ -1,5 +1,9 @@
 <template>
-	<div class="q-mb-lg">
+	<transition
+		appear
+		enter-active-class="animated zoomIn"
+		leave-active-class="animated zoomOut absolute-top">
+		<div class="q-mb-lg">
 		<q-banner
 			dense
 			inline-actions
@@ -17,6 +21,7 @@
 			</Task>
 		</q-list>
 	</div>
+	</transition>
 </template>
 
 <script>

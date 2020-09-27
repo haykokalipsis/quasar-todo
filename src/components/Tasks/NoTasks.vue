@@ -1,15 +1,20 @@
 <template>
-    <q-banner class="bg-grey-3">
-		<template v-slot:avatar>
-			<q-icon name="check" color="primary" />
-		</template>
+	<transition
+		appear
+		enter-active-class="animated zoomIn"
+		leave-active-class="animated zoomOut absolute-top">
+		<q-banner class="bg-grey-3">
+			<template v-slot:avatar>
+				<q-icon name="check" color="primary" />
+			</template>
 
-		No tasks to do today!
+			No tasks to do today!
 
-		<template v-slot:action>
-			<q-btn @click="$root.$emit('show-add-task-modal')" flat color="primary" label="Add Task"></q-btn>
-		</template>
-	</q-banner>
+			<template v-slot:action>
+				<q-btn @click="$root.$emit('show-add-task-modal')" flat color="primary" label="Add Task"></q-btn>
+			</template>
+		</q-banner>
+	</transition>
 </template>
 
 <script>

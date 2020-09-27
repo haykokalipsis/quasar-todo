@@ -12,21 +12,23 @@
 		<!-- Search END -->
 
 		<!-- Lists of tasks -->
-		<NoTasks v-if="!Object.keys(tasksTodo).length && !search" class="q-mb-lg"/>
+		<div class="relative-position">
+			<NoTasks v-if="!Object.keys(tasksTodo).length && !search" class="q-mb-lg"/>
 
-		<TaskList
-			v-if="Object.keys(tasksTodo).length"
-			:tasks="tasksTodo"
-			bgColor="bg-orange-4">
-				Todo
-		</TaskList>
+			<TaskList
+				v-if="Object.keys(tasksTodo).length"
+				:tasks="tasksTodo"
+				bgColor="bg-orange-4">
+					Todo
+			</TaskList>
 
-		<TaskList
-			v-if="Object.keys(tasksCompleted).length"
-			:tasks="tasksCompleted"
-			bgColor="bg-green-4">
-				Completed
-		</TaskList>
+			<TaskList
+				v-if="Object.keys(tasksCompleted).length"
+				:tasks="tasksCompleted"
+				bgColor="bg-green-4">
+					Completed
+			</TaskList>
+		</div>
 		<!-- Lists of tasks END -->
 
 		<!-- Add Task Button -->
