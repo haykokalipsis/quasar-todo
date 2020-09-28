@@ -59,6 +59,7 @@ const actions = {
 				context.commit('SET_LOGGED_IN', true);
 				LocalStorage.set('loggedIn', true);
 				this.$router.push('/');
+				context.dispatch('tasks/firebaseReadTasks', null, { root: true });
 			} else {
 				context.commit('SET_LOGGED_IN', false);
 				LocalStorage.set('loggedIn', false);
