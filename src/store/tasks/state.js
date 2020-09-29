@@ -22,7 +22,7 @@ export default function () {
 			// 	dueTime: '22:30'
 			// },
 		},
-
+		tasksDownloaded: false,
 		search: '',
 		sort: 'dueDate'
 	}

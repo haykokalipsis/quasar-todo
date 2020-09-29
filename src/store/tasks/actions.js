@@ -22,7 +22,7 @@ export function addTask(context, task) {
 	}
 	// context.commit('ADD_TASK', payload);
 
-	context.dispatch('firebaseAddData', payload);
+	context.dispatch('firebaseAddTask', payload);
 }
 
 export function setSearch(context, value) {
@@ -36,6 +36,11 @@ export function setSort(context, value) {
 export function firebaseReadTasks(context) {
 	let userId = firebaseAuth.currentUser.uid;
 	let userTasks = firebaseDb.ref('tasks/' + userId);
+
+	//
+	userTasks.once('value', snapshot => {
+		context.commit('SET_TASKS_DOWNLOADED', true);
+	})
 
 	// Child added hook
 	userTasks.on('child_added', (snapshot) => {

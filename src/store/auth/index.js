@@ -61,6 +61,8 @@ const actions = {
 				this.$router.push('/');
 				context.dispatch('tasks/firebaseReadTasks', null, { root: true });
 			} else {
+				context.commit('tasks/CLEAR_TASKS', null, { root: true });
+				context.commit('SET_tASKS_DOWNLOADED', false);
 				context.commit('SET_LOGGED_IN', false);
 				LocalStorage.set('loggedIn', false);
 				this.$router.replace('/auth');

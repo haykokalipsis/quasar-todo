@@ -20,3 +20,11 @@ export function SET_SEARCH(state, value) {
 export function SET_SORT(state, value) {
 	state.sort = value;
 }
+
+export function SET_TASKS_DOWNLOADED(state, value) {
+	state.tasksDownloaded = value;
+}
+
+export function CLEAR_TASKS(state) {
+	state.tasks = {};
+}
