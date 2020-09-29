@@ -1,5 +1,7 @@
 import uid from "quasar/src/utils/uid";
 import { firebaseDb, firebaseAuth } from "boot/firebase";
+import {showErrorMessage} from "src/functions/function-show-error-message";
+import {Notify} from "quasar";
 
 export function updateTask (context, payload) {
 	console.log('payload:', payload);
@@ -40,6 +42,9 @@ export function firebaseReadTasks(context) {
 	// Initial check for data
 	userTasks.once('value', snapshot => {
 		context.commit('SET_TASKS_DOWNLOADED', true);
+	}, (error) => {
+		showErrorMessage(error.message);
+		this.$router.replace('/auth');
 	});
 
 	// Child added hook
@@ -75,19 +80,41 @@ export function firebaseAddTask({}, payload) {
 	let userId = firebaseAuth.currentUser.uid;
 	let taskRef = firebaseDb.ref('tasks/' + userId + '/' + payload.id);
 
-	taskRef.set(payload.task);
+	taskRef.set(payload.task, (error) => {
+		if (error) {
+			showErrorMessage(error.message);
+		} else {
+			Notify.create('Task added!');
+		}
+	});
 }
 
 export function firebaseUpdateTask({}, payload) {
 	let userId = firebaseAuth.currentUser.uid;
 	let taskRef = firebaseDb.ref('tasks/' + userId + '/' + payload.id);
 
-	taskRef.update(payload.updates);
+	taskRef.update(payload.updates, (error) => {
+		if (error) {
+			showErrorMessage(error.message);
+		} else {
+			// Dont create notifications when only completed field is updated
+			let keys = Object.keys(payload.updates);
+			if ( ! (keys.includes('completed') && keys.length === 1)) {
+				Notify.create('Task updated!');
+			}
+		}
+	});
 }
 
 export function firebaseDeleteTask({}, taskId) {
 	let userId = firebaseAuth.currentUser.uid;
 	let taskRef = firebaseDb.ref('tasks/' + userId + '/' + taskId);
 
-	taskRef.remove();
+	taskRef.remove((error) => {
+		if (error) {
+			showErrorMessage(error.message);
+		} else {
+			Notify.create('Task deleted!');
+		}
+	});
 }
