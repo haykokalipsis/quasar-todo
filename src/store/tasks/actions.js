@@ -37,10 +37,10 @@ export function firebaseReadTasks(context) {
 	let userId = firebaseAuth.currentUser.uid;
 	let userTasks = firebaseDb.ref('tasks/' + userId);
 
-	//
+	// Initial check for data
 	userTasks.once('value', snapshot => {
 		context.commit('SET_TASKS_DOWNLOADED', true);
-	})
+	});
 
 	// Child added hook
 	userTasks.on('child_added', (snapshot) => {

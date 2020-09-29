@@ -28,3 +28,4 @@ export function SET_TASKS_DOWNLOADED(state, value) {
 export function CLEAR_TASKS(state) {
 	state.tasks = {};
 }
+

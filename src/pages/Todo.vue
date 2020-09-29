@@ -1,6 +1,7 @@
  <template>
 	<q-page> <!-- pa is for paading all directions -->
 		<div class="q-pa-md absolute full-width full-height column">
+			<!-- Add Task, Lists, Search, Sort -->
 			<template v-if="tasksDownloaded">
 				<!-- Search and Sort-->
 				<div class="row q-mb-lg">
@@ -47,12 +48,15 @@
 				<!-- Add Task Button END -->
 
 			</template>
+			<!-- Add Task, Lists, Search, Sort END -->
 
+			<!-- Spinner -->
 			<template v-else>
 				<span class="absolute-center">
 					<q-spinner color="primary" size="3em" />
 				</span>
 			</template>
+			<!-- Spinner END -->
 		</div>
 
 		<!-- Add Task Modal Dialog -->
