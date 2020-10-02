@@ -10,6 +10,13 @@
 		name: 'App',
 
 		mounted() {
+
+			if (this.$q.platform.is.electron) {
+				require('electron').ipcRenderer.on('show-settings', () => {
+					this.$router.push('/settings');
+				});
+			}
+
 			this.getSettings();
 			this.handleAuthStateChange();
 		},

@@ -17,10 +17,6 @@
 
 			<ModalButtons />
 		</q-form>
-
-		<pre>
-			{{ form }}
-		</pre>
 	</q-card>
 </template>
 

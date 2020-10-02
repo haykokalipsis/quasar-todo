@@ -2,7 +2,7 @@
 	<div class="row q-mb-sm">
 		<q-input
 			v-select-all
-			autofocus
+			v-delayed_autofocus="{delayForCordova: 500}"
 			outlined
 			:value="title"
 			@input="$emit('update:title', $event)"
@@ -24,6 +24,7 @@
 
 <script>
 	import { selectAll } from 'src/directives/directive-select-all';
+	import { delayed_autofocus } from 'src/directives/directive-autofocus';
 
 	export default {
 		name: "ModalTaskName",
@@ -45,7 +46,8 @@
 		// }
 
 		directives: {
-			selectAll
+			selectAll,
+			delayed_autofocus
 		}
 	}
 </script>

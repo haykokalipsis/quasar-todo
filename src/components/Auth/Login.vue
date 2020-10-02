@@ -8,7 +8,7 @@
 				Login to access your Todos anywhere!
 			</q-banner>
 		</div>
-
+		
 		<div class="row q-mb-md">
 			<q-input
 				class="col"
